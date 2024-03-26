@@ -1,0 +1,11 @@
+<nav>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/secured">Perfil</a></li>
+        <% if(!isAuthenticated) { %>
+        <li><a href="/login/">Ingresar</a></li>
+        <% } else { %>
+        <li><a href="/logout/">Salir</a></li>
+        <% } %>       
+    </ul>
+</nav>
