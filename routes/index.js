@@ -21,11 +21,21 @@ router.get('/', (req, res)=> {
 });
 
 router.get('/secured', requiresAuth(), async (req, res)=> {
-    let data = {};
+    let data = {}
+
+    const {token_type, access_token} = req.oidc.accessToken
+    console.log(req.oidc.accessToken)
+
+
     try {
-        const apiResponse = await axios.get('http://localhost:5000/private')
+        const apiResponse = await axios.get('http://localhost:5000/private', 
+        {
+            headers:{
+                authorization: `${token_type} ${access_token}`,
+            }
+        })
         data = apiResponse.data
-    } catch (e) {};
+    } catch (e) {}
 
     var logged = req.oidc.isAuthenticated();
     if (logged) {
