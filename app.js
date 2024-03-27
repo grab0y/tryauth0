@@ -1,3 +1,5 @@
+// app/app.js
+
 var express = require ('express');
 var indexRouter = require("./routes/index.js");
 const { auth } = require('express-openid-connect');
